@@ -17,7 +17,7 @@ const getPlayerChoice = function() {
         return;
     }
     return selection;
-};
+}
 
 const getComputerChoice = () => {
     const randomValue = Math.random();
@@ -30,7 +30,10 @@ const getComputerChoice = () => {
     }
 };
 
-const getWinner = (cChoice, pChoice) => {
+const getWinner = (
+    cChoice,
+    pChoice = DEFAULT_USER_CHOICE
+) =>
     cChoice === pChoice
         ? RESULT_DRAW
         : (cChoice === ROCK && pChoice === PAPER) ||
@@ -51,7 +54,7 @@ const getWinner = (cChoice, pChoice) => {
     // } else {
     //     return RESULT_COMPUTER_WINS;
     // }
-}
+
 
 startGameBtn.addEventListener('click', () => {
     if(gameIsRunning) {
@@ -68,7 +71,7 @@ startGameBtn.addEventListener('click', () => {
         winner = getWinner(computerChoice);
     }
 
-    let message =  `You picked ${playerChoice}, computer picked ${computerChoice}, therefore `;
+    let message =  `You picked ${playerChoice || DEFAULT_USER_CHOICE}, computer picked ${computerChoice}, therefore `;
     if (winner === RESULT_DRAW) {
         message = message + 'had a draw';
     } else if (winner === RESULT_COMPUTER_WINS) {
